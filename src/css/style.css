@@ -64,3 +64,30 @@
 .main {
   padding: 20px;
 }
+
+button.button {
+  border: none;
+  width: 29px;
+  padding: 6px;
+  border-radius: 20px;
+  background: #7c7c7c2b;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  transition: (0.5s);
+}
+
+button.button:focus {
+  outline: none;
+}
+
+button.button:hover {
+  border: 1px solid rgb(122, 112, 112);
+}
+
+.displayWeather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+}

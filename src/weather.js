@@ -5,6 +5,7 @@ let temp = document.querySelector(".temp");
 let desc = document.querySelector(".desc");
 
 button.addEventListener("click", function () {
+  //thabiso remember not to hardcode api keys again
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${inputvalue.value}&units=metric&appid=8b151143c8cc860a1c3a07ac2aebd4b5`
   )

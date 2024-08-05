@@ -122,16 +122,16 @@ function fetchTopNews(countryCode) {
             ? `<img src="${item.urlToImage}" alt="${item.title}">`
             : "";
           return `
-          <article>
-          <hr />
-          <h2>${item.title}</h2>
-          <h3>${item.author || "Unknown Author"}</h3>
-          ${image}
-          <p>${item.description || "No description available."}</p>
-          <a href="${item.url}" target="_blank">Read more</a>
-          <hr />
-          </article>
-        `;
+            <article>
+            <hr />
+            <h2>${item.title}</h2>
+            <h3>${item.author || "Unknown Author"}</h3>
+            ${image}
+            <p>${item.description || "No description available."}</p>
+            <a href="${item.url}" target="_blank">Read more</a>
+            <hr />
+            </article>
+          `;
         })
         .join("");
 

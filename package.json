@@ -1,0 +1,15 @@
+{
+  "name": "bbd_immersion",
+  "version": "1.0.0",
+  "description": "bbd immersion challenge",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bbd",
+    "challenge"
+  ],
+  "author": "Thabiso Rantsho",
+  "license": "ISC"
+}

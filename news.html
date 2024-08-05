@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News</title>
     <link rel="stylesheet" href="src/css/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      #news {
+        margin-top: 20px;
+      }
+      .headline {
+        margin-bottom: 10px;
+      }
+      .error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -20,7 +35,7 @@
             <a class="header__nav-link" href="index.html">Home</a>
           </li>
           <li class="header__nav-item">
-            <a class="header__nav-link" href="newws.html">News</a>
+            <a class="header__nav-link" href="news.html">News</a>
           </li>
           <li class="header__nav-item">
             <a class="header__nav-link" href="weather.html">Weather</a>
@@ -29,5 +44,10 @@
       </nav>
     </header>
     <h1>News</h1>
+    <h1>Top News Stories Based on Your Location</h1>
+    <button onclick="fetchLocationNews()">Get News</button>
+    <div id="news">Click "Get News" to load headlines.</div>
+    <script src="news.js" defer></script>
   </body>
+  <script src="src/news.js" defer></script>
 </html>

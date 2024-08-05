@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>weather</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" href="src/css/style.css" />
   </head>
@@ -30,11 +43,17 @@
       </nav>
     </header>
     <h1>Weather</h1>
-    <h1>
-      <div id="temp"></div>
-      <div id="minutely"></div>
-    </h1>
-    <h2><div id="location"></div></h2>
+    <div class="container">
+      <div class="input">
+        <input type="text " class="inputValue" placeholder="Enter Location" />
+        <button class="button"><i class="fas fa-search"></i></button>
+      </div>
+
+      <div class="displayWeather">
+        <h1 class="temp">----°C</h1>
+        <p class="desc">---</p>
+      </div>
+    </div>
   </body>
   <script src="src/weather.js"></script>
 </html>

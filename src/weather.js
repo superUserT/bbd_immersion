@@ -1,17 +1,13 @@
-require("dotenv").config();
-
 let button = document.querySelector(".button");
 let inputvalue = document.querySelector(".inputValue");
 let nameVal = document.querySelector(".name");
 let temp = document.querySelector(".temp");
 let desc = document.querySelector(".desc");
 
-let weatherKey = process.env.WeatherAPI;
-
 button.addEventListener("click", function () {
   //thabiso remember not to hardcode api keys again
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${inputvalue.value}&units=metric&appid=${weatherKey}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${inputvalue.value}&units=metric&appid=8b151143c8cc860a1c3a07ac2aebd4b5`
   )
     .then((response) => response.json())
     .then(displayData)

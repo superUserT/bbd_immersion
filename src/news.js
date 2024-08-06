@@ -1,5 +1,7 @@
+require("dotenv").config();
+
 const newsContainer = document.querySelector("#news");
-const apiKey = "476d094070234c3bac58bca28cab17a3";
+const apiKey = `${process.env.NewsAPI}`;
 
 let countryCodes = {
   ae: "United Arab Emirates",

@@ -13,6 +13,7 @@
   "author": "Thabiso Rantsho",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "newsapi": "^2.4.1"
   }
 }

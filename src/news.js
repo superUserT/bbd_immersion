@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const newsContainer = document.querySelector("#news");
-const apiKey = `${process.env.NewsAPI}`;
+const apiKey = `${process.env.newsAPI}`;
 
 let countryCodes = {
   ae: "United Arab Emirates",

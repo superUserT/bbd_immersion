@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>weather</title>
+    <title>Weather</title>
 
     <link
       rel="stylesheet"
@@ -17,7 +17,6 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
       rel="stylesheet"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" href="src/css/style.css" />
   </head>
   <body>
@@ -42,18 +41,22 @@
         </ul>
       </nav>
     </header>
-    <h1>Weather</h1>
+
+    <h1 style="text-align: center">Weather</h1>
     <div class="container">
       <div class="input">
-        <input type="text " class="inputValue" placeholder="Enter Location" />
-        <button class="button"><i class="fas fa-search"></i></button>
+        <button class="button">
+          <i class="fas fa-search"></i> Get Weather
+        </button>
       </div>
 
       <div class="displayWeather">
         <h1 class="temp">----°C</h1>
         <p class="desc">---</p>
+        <p class="coords">Latitude: --, Longitude: --</p>
       </div>
     </div>
+
+    <script src="src/weather.js"></script>
   </body>
-  <script src="src/weather.js"></script>
 </html>

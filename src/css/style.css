@@ -1,3 +1,4 @@
+/* General body styling */
 /* body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,6 +7,7 @@
   background-repeat: no-repeat;
 } */
 
+/* Header styling */
 .header {
   background-color: #6c13c5;
   color: #fff;
@@ -61,19 +63,28 @@
   text-decoration: underline;
 }
 
-.main {
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
   padding: 20px;
+}
+
+.input {
+  margin-bottom: 20px;
 }
 
 button.button {
   border: none;
-  width: 29px;
-  padding: 6px;
+  padding: 10px 20px;
   border-radius: 20px;
-  background: #7c7c7c2b;
+  background: #6c13c5;
   color: white;
   font-family: "Raleway", sans-serif;
-  transition: (0.5s);
+  transition: 0.5s;
+  align-items: center;
 }
 
 button.button:focus {
@@ -84,10 +95,10 @@ button.button:hover {
   border: 1px solid rgb(122, 112, 112);
 }
 
+/* Display weather section styling */
 .displayWeather {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: center; /* Center horizontally */
   font-family: "Raleway", sans-serif;
 }

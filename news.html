@@ -19,6 +19,23 @@
       .error {
         color: red;
       }
+      #search-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      #search-container input,
+      #search-container button {
+        margin: 0 5px;
+      }
+      .button-container {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+      #city {
+        margin-top: 20px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -44,8 +61,15 @@
       </nav>
     </header>
     <h1>News</h1>
-    <h1>Top News Stories in the US</h1>
-    <button onclick="fetchTopNews()">Get News</button>
+    <h1>Top News Stories in Your City</h1>
+    <div class="button-container">
+      <button onclick="getLocationAndFetchNews()">Get News</button>
+    </div>
+    <div id="city">Your Current City: Not determined</div>
+    <div id="search-container">
+      <input type="text" id="search-query" placeholder="Search for news..." />
+      <button onclick="searchNews()">Search</button>
+    </div>
     <div id="news">Click "Get News" to load headlines.</div>
     <script src="src/news.js" defer></script>
   </body>

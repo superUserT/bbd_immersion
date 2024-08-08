@@ -1,25 +1,38 @@
-// news.js
-
-// Make sure to include your API token here
 const apiToken = "RUk41FSxrrsyK0xbDy7jrMh2cRC9vOsNEtTbKi2I";
 const newsContainer = document.querySelector("#news");
+const cityContainer = document.querySelector("#city");
 
-function fetchTopNews() {
-  // Define the query parameters
+function fetchLocationDetails(latitude, longitude) {
+  const reverseGeocodeUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+
+  return fetch(reverseGeocodeUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const countryCode = data.countryCode || "us";
+      const cityName = data.city || "your city";
+      return { countryCode, cityName };
+    });
+}
+
+function fetchTopNews(countryCode, searchQuery) {
   const params = {
     api_token: apiToken,
     categories: "business,tech",
-    search: "apple",
-    limit: "5", // Limit to 5 results
+    search: searchQuery,
+    limit: "5",
+    locale: countryCode,
   };
 
-  // Encode parameters
   const esc = encodeURIComponent;
   const query = Object.keys(params)
     .map((k) => `${esc(k)}=${esc(params[k])}`)
     .join("&");
 
-  // Define the URL for the NewsAPI endpoint
   const url = `https://api.thenewsapi.com/v1/news/all?${query}`;
 
   fetch(url)
@@ -35,7 +48,6 @@ function fetchTopNews() {
         return;
       }
 
-      // Generate HTML content for the news articles
       const htmlString = data.data
         .map((item) => {
           const image = item.image_url
@@ -55,7 +67,6 @@ function fetchTopNews() {
         })
         .join("");
 
-      // Insert the generated HTML into the newsContainer
       newsContainer.innerHTML = htmlString;
     })
     .catch((error) => {
@@ -64,5 +75,59 @@ function fetchTopNews() {
     });
 }
 
-// Optional: Add event listener to the button if you want to trigger it via JS instead of inline HTML
-document.querySelector("button").addEventListener("click", fetchTopNews);
+function getLocationAndFetchNews() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        fetchLocationDetails(latitude, longitude)
+          .then(({ countryCode, cityName }) => {
+            cityContainer.innerHTML = `City: ${cityName}`;
+            fetchTopNews(
+              countryCode,
+              document.querySelector("#search-query").value
+            );
+          })
+          .catch((error) =>
+            console.error("Error fetching location details:", error)
+          );
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+        fetchTopNews("us", document.querySelector("#search-query").value);
+      }
+    );
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+    fetchTopNews("us", document.querySelector("#search-query").value);
+  }
+}
+
+function searchNews() {
+  const searchQuery = document.querySelector("#search-query").value;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        fetchLocationDetails(latitude, longitude)
+          .then(({ countryCode }) => fetchTopNews(countryCode, searchQuery))
+          .catch((error) =>
+            console.error("Error fetching location details:", error)
+          );
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+        fetchTopNews("us", searchQuery);
+      }
+    );
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+    fetchTopNews("us", searchQuery);
+  }
+}
+
+document
+  .querySelector("button")
+  .addEventListener("click", getLocationAndFetchNews);

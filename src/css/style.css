@@ -1,23 +1,21 @@
-/* General body styling */
-/* body {
-  font-family: Arial, sans-serif;
+body {
+  font-family: "Raleway", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: grey;
-  background-repeat: no-repeat;
-} */
+  background-color: #f5f5f5;
+}
 
-/* Header styling */
 .header {
   background-color: #6c13c5;
   color: #fff;
-  padding: 10px 0;
+  padding: 15px 0;
   text-align: center;
   position: relative;
 }
 
 .header__title {
   margin: 0;
+  font-size: 2rem;
 }
 
 .hamburger {
@@ -25,15 +23,15 @@
   flex-direction: column;
   cursor: pointer;
   position: absolute;
-  top: 15px;
+  top: 20px;
   right: 20px;
 }
 
 .hamburger span {
   background-color: #fff;
   height: 3px;
-  margin: 4px 0;
-  width: 25px;
+  margin: 5px 0;
+  width: 30px;
 }
 
 .header__nav {
@@ -42,7 +40,7 @@
 }
 
 .header__nav-list {
-  list-style-type: none;
+  list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
@@ -51,54 +49,112 @@
 }
 
 .header__nav-item {
-  margin: 5px 10px;
+  margin: 0 15px;
 }
 
 .header__nav-link {
   color: #fff;
   text-decoration: none;
+  font-size: 1.2rem;
 }
 
 .header__nav-link:hover {
   text-decoration: underline;
 }
 
-.container {
+.weather-section {
+  text-align: center;
+  padding: 20px;
+}
+
+.weather-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.weather-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
-  padding: 20px;
 }
 
 .input {
   margin-bottom: 20px;
 }
 
-button.button {
+.button {
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
   background: #6c13c5;
   color: white;
   font-family: "Raleway", sans-serif;
-  transition: 0.5s;
+  transition: 0.3s;
+  display: flex;
   align-items: center;
 }
 
-button.button:focus {
+.button:focus {
   outline: none;
 }
 
-button.button:hover {
-  border: 1px solid rgb(122, 112, 112);
+.button:hover {
+  border: 1px solid rgba(122, 112, 112, 0.5);
 }
 
-/* Display weather section styling */
 .displayWeather {
+  font-family: "Raleway", sans-serif;
+}
+
+.temp {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+
+.desc {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.coords {
+  font-size: 1rem;
+  color: #666;
+}
+
+.intro,
+.links {
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+.intro ol li {
+  margin: 10px 0;
+}
+
+.links h3 {
+  margin: 10px 0;
+}
+
+.links a {
+  text-decoration: none;
+  color: #6c13c5;
+  font-weight: bold;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+main {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  font-family: "Raleway", sans-serif;
+  align-items: center;
+  padding: 20px;
 }

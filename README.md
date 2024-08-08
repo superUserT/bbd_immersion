@@ -52,6 +52,10 @@ For other pages, navigate to news.html and weather.html.
 Either press the button to get random news from around the world or
 search in the bar for local news
 
+### Weather and Location
+
+Press the button to get the weather in your current location and your exact GPS location.
+
 ## Styling
 
 The project uses a custom CSS stylesheet located in src/css/style.css to ensure a clean and modern look.

@@ -4,26 +4,27 @@ This project showcases my web development skills through three key components: a
 
 ## Project Overview
 
-Features
+### Features
 
-Home Page: Personal introduction, details about skills, interests, and links to portfolio and CV.
+- Home Page: Personal introduction, details about skills, interests, and links to portfolio and CV.
 
-News Page: Fetches and displays top news based on user's current location. Allows manual search for news.
+- News Page: Fetches and displays top news based on user's current location. Allows manual search for news.
 
-Weather Page: Retrieves and displays the current weather based on the user's location.
+- Weather Page: Retrieves and displays the current weather based on the user's location.
 
 ## Technologies Used
 
-HTML/CSS: For structuring and styling the web pages.
+- HTML/CSS: For structuring and styling the web pages.
 
-JavaScript: To handle user interactions and fetch data from APIs.
+- JavaScript: To handle user interactions and fetch data from APIs.
 
-APIs:
-NewsAPI: For fetching news articles.
+# APIs:
 
-Weather API: For retrieving current weather data.
+- NewsAPI: For fetching news articles.
 
-Geolocation API: For obtaining the user's current location.
+- Weather API: For retrieving current weather data.
+
+- Geolocation API: For obtaining the user's current location.
 
 ## Setup
 

@@ -57,7 +57,6 @@ function fetchTopNews(countryCode, searchQuery) {
             <article>
               <hr />
               <h2>${item.title}</h2>
-              <h3>${item.author || "Unknown Author"}</h3>
               ${image}
               <p>${item.description || "No description available."}</p>
               <a href="${item.url}" target="_blank">Read more</a>

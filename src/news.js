@@ -1,111 +1,28 @@
-require("dotenv").config();
+// news.js
 
+// Make sure to include your API token here
+const apiToken = "RUk41FSxrrsyK0xbDy7jrMh2cRC9vOsNEtTbKi2I";
 const newsContainer = document.querySelector("#news");
-const apiKey = `${process.env.newsAPI}`;
 
-let countryCodes = {
-  ae: "United Arab Emirates",
-  ar: "Argentina",
-  at: "Austria",
-  au: "Australia",
-  be: "Belgium",
-  bg: "Bulgaria",
-  br: "Brazil",
-  ca: "Canada",
-  ch: "Switzerland",
-  cn: "China",
-  co: "Colombia",
-  cu: "Cuba",
-  cz: "Czech Republic",
-  de: "Germany",
-  eg: "Egypt",
-  fr: "France",
-  gb: "United Kingdom",
-  gr: "Greece",
-  hk: "Hong Kong",
-  hu: "Hungary",
-  id: "Indonesia",
-  ie: "Ireland",
-  il: "Israel",
-  in: "India",
-  it: "Italy",
-  jp: "Japan",
-  kr: "South Korea",
-  lt: "Lithuania",
-  lv: "Latvia",
-  ma: "Morocco",
-  mx: "Mexico",
-  my: "Malaysia",
-  ng: "Nigeria",
-  nl: "Netherlands",
-  no: "Norway",
-  nz: "New Zealand",
-  ph: "Philippines",
-  pl: "Poland",
-  pt: "Portugal",
-  ro: "Romania",
-  rs: "Serbia",
-  ru: "Russia",
-  sa: "Saudi Arabia",
-  se: "Sweden",
-  sg: "Singapore",
-  si: "Slovenia",
-  sk: "Slovakia",
-  th: "Thailand",
-  tr: "Turkey",
-  tw: "Taiwan",
-  ua: "Ukraine",
-  us: "United States",
-  ve: "Venezuela",
-  za: "South Africa",
-};
+function fetchTopNews() {
+  // Define the query parameters
+  const params = {
+    api_token: apiToken,
+    categories: "business,tech",
+    search: "apple",
+    limit: "5", // Limit to 5 results
+  };
 
-fetch("./countryCodes.json")
-  .then((response) => response.json())
-  .then((data) => {
-    countryCodes = data;
-  })
-  .catch((error) => {
-    console.error("Error fetching country codes:", error);
-  });
+  // Encode parameters
+  const esc = encodeURIComponent;
+  const query = Object.keys(params)
+    .map((k) => `${esc(k)}=${esc(params[k])}`)
+    .join("&");
 
-function fetchLocationNews() {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // Define the URL for the NewsAPI endpoint
+  const url = `https://api.thenewsapi.com/v1/news/all?${query}`;
 
-      getCountryCodeFromCoords(latitude, longitude)
-        .then((countryCode) => {
-          if (countryCode && countryCodes[countryCode]) {
-            fetchTopNews(countryCode);
-          } else {
-            newsContainer.innerHTML =
-              "Unable to determine location or country code.";
-          }
-        })
-        .catch((error) => {
-          console.error("Error determining location:", error);
-          newsContainer.innerHTML = "Error determining location.";
-        });
-    },
-    (error) => {
-      console.error("Error getting location:", error);
-      newsContainer.innerHTML = "Error getting location.";
-    }
-  );
-}
-
-function getCountryCodeFromCoords(latitude, longitude) {
-  return Promise.resolve("us");
-}
-
-function fetchTopNews(countryCode) {
-  const url = new URL(`https://newsapi.org/v2/top-headlines`);
-  url.searchParams.append("country", countryCode);
-  url.searchParams.append("apiKey", apiKey);
-
-  fetch(url.toString())
+  fetch(url)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -113,30 +30,32 @@ function fetchTopNews(countryCode) {
       return response.json();
     })
     .then((data) => {
-      if (!data.articles || data.articles.length === 0) {
-        newsContainer.innerHTML = "No articles found for your location.";
+      if (!data.data || data.data.length === 0) {
+        newsContainer.innerHTML = "No articles found.";
         return;
       }
 
-      let htmlString = data.articles
+      // Generate HTML content for the news articles
+      const htmlString = data.data
         .map((item) => {
-          const image = item.urlToImage
-            ? `<img src="${item.urlToImage}" alt="${item.title}">`
+          const image = item.image_url
+            ? `<img src="${item.image_url}" alt="${item.title}" style="width: 100%; max-width: 600px;">`
             : "";
           return `
             <article>
-            <hr />
-            <h2>${item.title}</h2>
-            <h3>${item.author || "Unknown Author"}</h3>
-            ${image}
-            <p>${item.description || "No description available."}</p>
-            <a href="${item.url}" target="_blank">Read more</a>
-            <hr />
+              <hr />
+              <h2>${item.title}</h2>
+              <h3>${item.author || "Unknown Author"}</h3>
+              ${image}
+              <p>${item.description || "No description available."}</p>
+              <a href="${item.url}" target="_blank">Read more</a>
+              <hr />
             </article>
           `;
         })
         .join("");
 
+      // Insert the generated HTML into the newsContainer
       newsContainer.innerHTML = htmlString;
     })
     .catch((error) => {
@@ -144,3 +63,6 @@ function fetchTopNews(countryCode) {
       console.error("Error fetching news:", error);
     });
 }
+
+// Optional: Add event listener to the button if you want to trigger it via JS instead of inline HTML
+document.querySelector("button").addEventListener("click", fetchTopNews);
